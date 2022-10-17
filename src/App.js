@@ -30,7 +30,7 @@ function App() {
         {
           path: 'invantory',
           loader: () => fetch("https://jsonplaceholder.typicode.com/users"),
-          element: <Invantory></Invantory>
+          element: <PrivateRoute><Invantory></Invantory></PrivateRoute>
         },
         {
           path: 'about',
