@@ -9,6 +9,8 @@ import About from './components/About/About';
 import {productsCartLoader} from "./Loaders/ProductsCartLoader"
 import Login from "../src/components/Login/Login";
 import SignUp from "../src/components/SignUp/SignUp";
+import Shipping from './components/Shipping/Shipping';
+import PrivateRoute from './Routes/PrivateRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +35,10 @@ function App() {
         {
           path: 'about',
           element: <About></About>
+        },
+        {
+          path: 'shipping',
+          element: <PrivateRoute><Shipping></Shipping></PrivateRoute>
         },
         {
           path: "login",
