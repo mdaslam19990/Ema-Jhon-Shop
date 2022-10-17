@@ -7,6 +7,8 @@ import Shop from './components/Shop/Shop';
 import Invantory from './components/Invantory/Invantory';
 import About from './components/About/About';
 import {productsCartLoader} from "./Loaders/ProductsCartLoader"
+import Login from "../src/components/Login/Login";
+import SignUp from "../src/components/SignUp/SignUp";
 
 function App() {
   const router = createBrowserRouter([
@@ -31,6 +33,14 @@ function App() {
         {
           path: 'about',
           element: <About></About>
+        },
+        {
+          path: "login",
+          element: <Login/>
+        },
+        {
+          path: "signup",
+          element: <SignUp/>
         }
       ]
     },

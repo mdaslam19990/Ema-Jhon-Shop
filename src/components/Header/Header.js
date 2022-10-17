@@ -11,7 +11,8 @@ const Header = () => {
                 <Link to="/">Shop</Link>
                 <Link to="/orders">Order</Link>
                 <Link to="/invantory">Manage Invantory</Link>
-                <Link to="/about">Log in</Link>
+                <Link to="/login">Log in</Link>
+                <Link to="/signup">Sign Up</Link>
             </div>
         </nav>
     );
