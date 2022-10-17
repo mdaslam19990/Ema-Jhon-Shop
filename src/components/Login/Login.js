@@ -5,7 +5,7 @@ import { authContext } from '../../Context/UserContext';
 import "./Login.css";
 
 const Login = () => {
-    const { signOut } = useContext(authContext)
+    const { signIn } = useContext(authContext)
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -13,7 +13,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        signOut(email, password)
+        signIn(email, password)
         .then(result => {
             const user = result.user;
             console.log(user)
