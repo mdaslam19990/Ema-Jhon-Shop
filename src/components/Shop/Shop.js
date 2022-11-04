@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   addToDb,
   deleteShoppingCart,
@@ -31,16 +31,28 @@ const Shop = () => {
 
   useEffect(() => {
     const dataStored = storedData();
-    let storedNewData = [];
-    for (const id in dataStored) {
-      const findData = products.find((product) => product._id === id);
-      if (findData) {
-        const quantity = dataStored[id];
-        findData.quantity = quantity;
-        storedNewData.push(findData);
-      }
-    }
-    setCart(storedNewData);
+    const storedNewData = [];
+    const ids = Object.keys(dataStored);
+    fetch("http://localhost:5000/productsId", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(ids),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        for (const id in dataStored) {
+          const findData = data.find((product) => product._id === id);
+          if (findData) {
+            const quantity = dataStored[id];
+            findData.quantity = quantity;
+            storedNewData.push(findData);
+          }
+        }
+        setCart(storedNewData);
+      });
   }, [products]);
 
   const handleToCart = (selectedProducdt) => {
@@ -91,7 +103,7 @@ const Shop = () => {
         </h2>
         {[...Array(pages).keys()].map((number) => (
           <button
-            className={page == number && "selected"}
+            className={page === number && "selected"}
             key={number}
             onClick={() => setPage(number)}
           >
